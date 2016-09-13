@@ -1,6 +1,25 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+" checking for OS
+let g:platform = 0
+let g:distro = 0
+
+if filereadable("/etc/debian_version")
+	let g:platform="Linux"
+	let g:distro="Debian"
+elseif has('mac')
+	let g:platform="Darwin"
+	let g:distro="OSX"
+elseif has('win32') || ('win16')
+	let g:platform="Windows"
+elseif filereadable("/etc/redhat-release")
+	let g:platform="Linux"
+	let g:distro="CentOs"
+endif
+
+
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -31,7 +50,9 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround.git'
 
 " IDE Features - May be slow
-Plugin 'Valloric/YouCompleteMe'
+if g:distro != 'Debian' || 'CentOs'
+	Plugin 'Valloric/YouCompleteMe'
+endif
 
 " Colors and Visuals
 Plugin 'altercation/vim-colors-solarized'
@@ -62,8 +83,11 @@ let g:ctrlp_switch_buffer = 0
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 set noswapfile
-let g:ycm_autoclose_preview_window_after_completion=1
-map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+if exists(":YcmCompleter")
+	let g:ycm_autoclose_preview_window_after_completion=1
+	map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+endif
 
 
 " ColorScheme Changes
