@@ -28,39 +28,44 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'scrooloose/nerdtree.git'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'mileszs/ack.vim'
-Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'ekalinin/Dockerfile.vim'
-Plugin 'pangloss/vim-javascript'
-Plugin 'nelstrom/vim-markdown-preview'
 Plugin 'elzr/vim-json'
-Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'scrooloose/syntastic'
+
+" Ansible Stuff
+Plugin 'pearofducks/ansible-vim'
 
 " Python Plugins
 Plugin 'nvie/vim-flake8'
 Plugin 'vim-scripts/Pydiction'
 Plugin 'vim-scripts/indentpython.vim'
-Plugin 'tmhedberg/SimpylFold' 
 
 " tpope stuff -- awesomness
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround.git'
+Plugin 'tpope/vim-vividchalk'
+
 
 " IDE Features - May be slow
 if g:distro != 'Debian' || 'CentOs'
 	Plugin 'Valloric/YouCompleteMe'
 endif
 
+" Writing
+if g:distro != 'Debian' || 'CentOs'
+	Plugin 'godlygeek/tabular'
+	Plugin 'nelstrom/vim-markdown-preview'
+	Plugin 'junegunn/goyo.vim'
+	Plugin 'bwmcadams/vim-deckset'
+endif
+
 " Colors and Visuals
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'sjl/badwolf'
 Plugin 'tomasr/molokai'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-
+Plugin 'dirtyonekanobi/cisco.vim'
 
 
 " Plugins to Lookup or Install Later
@@ -77,11 +82,7 @@ set hidden
 
 set backspace=2		" Make Backspace NORMAL
 syntax enable		" Highlight Some Syntax
-let mapleader=","        " leader is Comma 
-let g:ctrlp_match_window = 'bottom,order:ttb'
-let g:ctrlp_switch_buffer = 0
-let g:ctrlp_working_path_mode = 0
-let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+let mapleader="\<Space>"    " leader is SPACE
 set noswapfile
 
 if exists(":YcmCompleter")
@@ -91,15 +92,15 @@ endif
 
 
 " ColorScheme Changes
-colorscheme lucario
+colorscheme lucario 	"Previously lucario
+
+set ruler
 
 " OSX Stuff
 if system('uname -s') == "Darwin\n"
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='cool'
 set guifont=Inconsolata\ for\ Powerline:h15
-let g:Powerline_symbols = 'fancy'
+set laststatus=2
+set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v]%{fugitive#statusline()}
 endif
 
 " Universal Stuff
@@ -113,8 +114,17 @@ set number			" Line Numbers
 set incsearch           	" search as characters are entered
 set hlsearch            	" highlight matches
 
-" NerdTree Leader
-nnoremap <leader>nt :NERDTree
+set tabstop=4	" number of visual spaces per TAB
+set softtabstop=4	" number of spaces in TAB when editing
+set expandtab
+set showmatch
+" move to beginning/end of line
+nnoremap B ^
+nnoremap E $
+" jk is escape
+inoremap jk <esc>
+" save session with leader-s
+nnoremap <leader>s :mksession<CR>
 
 
 "------------- Python Specific -----------------"
@@ -130,7 +140,6 @@ if 'VIRTUA_ENV' in os.environ:
   activate_this = os.path.join(project_base_dir,'bin/activate_this.py')
   execfile(activate_this, dict(__file__=activate_this))
 EOF
-
 
 
 "------------Start Python PEP 8 stuff----------------"
@@ -155,9 +164,12 @@ autocmd FileType python set foldmethod=indent
 "----------------- End Python PEP 8 Stuff ------------"
 autocmd FileType python nnoremap <leader>r :!clear;python %<CR>
 
-nnoremap <leader>za "space to open folds
+"space+f to open all folds
+nnoremap <leader>f zR  
 
-let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
+"space+F to close all folds 
+nnoremap <leader>F zM   
+
 
 "------------- End Python Specific ---------------"
 
@@ -166,3 +178,5 @@ let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 if executable('ag')
 	let g:ackprg = 'ag --vimgrep'
 endif
+
+set relativenumber
