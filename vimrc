@@ -33,6 +33,9 @@ Plugin 'mileszs/ack.vim'
 Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'elzr/vim-json'
 Plugin 'scrooloose/syntastic'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'townk/vim-autoclose'
 
 " Ansible Stuff
 Plugin 'pearofducks/ansible-vim'
@@ -49,16 +52,19 @@ Plugin 'tpope/vim-vividchalk'
 
 
 " IDE Features - May be slow
-if g:distro != 'Debian' || 'CentOs'
-	Plugin 'Valloric/YouCompleteMe'
-endif
+"if g:distro != 'Debian' || 'CentOs'
+"	Plugin 'Valloric/YouCompleteMe'
+" endif
 
 " Writing
 if g:distro != 'Debian' || 'CentOs'
 	Plugin 'godlygeek/tabular'
-	Plugin 'nelstrom/vim-markdown-preview'
+    Bundle 'gabrielelana/vim-markdown'
+	Plugin 'iamcco/markdown-preview.vim'
 	Plugin 'junegunn/goyo.vim'
 	Plugin 'bwmcadams/vim-deckset'
+    Plugin 'xolox/vim-notes'
+    Plugin 'xolox/vim-misc'
 endif
 
 " Colors and Visuals
@@ -109,7 +115,7 @@ set t_Co=256
 set fillchars+=stl:\ ,stlnc:\
 set term=xterm-256color
 set termencoding=utf-8
-call togglebg#map("<F5>")	" Toggle Background Colors
+" call togglebg#map("<F5>")	" Toggle Background Colors
 set number			" Line Numbers
 set incsearch           	" search as characters are entered
 set hlsearch            	" highlight matches
@@ -179,4 +185,37 @@ if executable('ag')
 	let g:ackprg = 'ag --vimgrep'
 endif
 
+let g:notes_directories = [ '~/notes', '~/Documents/Notes' ]
+
 set relativenumber
+
+" --------- Markdown Specific ---------"
+"
+nmap <silent> <F8> <Plug>MarkdownPreview        " for normal mode
+imap <silent> <F8> <Plug>MarkdownPreview        " for insert mode
+nmap <silent> <F9> <Plug>StopMarkdownPreview    " for normal mode
+imap <silent> <F9> <Plug>StopMarkdownPreview    " for insert mode
+
+let g:mkdp_path_to_chrome = "open -a Google\\ Chrome"
+
+" Ultisnips Specific
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="kk"
+let g:UltiSnipsJumpBackwardTriger="ii"
+let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsSnippetsDir="~/.vim/UltiSnips/"
+
+"----------- Splits and Navigation -------------- "
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+set splitbelow
+set splitright
+
+" netrw specific
+nnoremap <leader>e :Explore<cr>
+nnoremap <leader>v :Vexplore<cr>
+nnoremap <leader>h :Sexplore<cr>
+
