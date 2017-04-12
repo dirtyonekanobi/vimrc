@@ -156,9 +156,10 @@ au BufRead,BufNewFile *py,*pyw,*.c,*.h set tabstop=4
 au BufRead,BufNewFile *.py,*pyw set shiftwidth=4
 au BufRead,BufNewFile *.py,*.pyw set expandtab
 au BufRead,BufNewFile *.py set softtabstop=4
-au BufRead,BufNewFile *.py set textwidth=79
+au BufRead,BufNewFile *.py set textwidth=100
 au BufRead,BufNewFile *.py set autoindent
 au BufRead,BufNewFile *.py set fileformat=unix
+set foldlevelstart=99
 
 highlight BadWhitespace ctermbg=red guibg=red
 
@@ -188,6 +189,7 @@ endif
 let g:notes_directories = [ '~/notes', '~/Documents/Notes' ]
 
 set relativenumber
+set clipboard=unnamed
 
 " --------- Markdown Specific ---------"
 "
@@ -219,3 +221,4 @@ nnoremap <leader>e :Explore<cr>
 nnoremap <leader>v :Vexplore<cr>
 nnoremap <leader>h :Sexplore<cr>
 
+autocmd FileType yaml setlocal autoindent ts=2 sts=2 sw=2 expandtab

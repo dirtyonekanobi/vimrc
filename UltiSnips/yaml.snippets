@@ -1,0 +1,51 @@
+snippet com "Ansible Comment" !b
+###${1/./#/g}###
+## $1 ##
+###${1/./#/g}###
+endsnippet
+
+snippet net "Ansible Net PB Boilerplate" !b
+---
+#########################################
+#		${1: Playbook title}			#
+#########################################
+
+
+- name: ${2: PB Name}
+  hosts: ${3: Hosts}
+  gather_facts: no
+  connection: local
+
+
+  vars:
+    ${4: Vars}
+
+  roles: 
+	- { role: ${5: role} } 
+
+endsnippet
+
+snippet prov "Ansible Network Provider" !b
+set_fact:
+  provider:
+    host: "{{ inventory_hostname }}"
+	username: "{{ secrets['username'] }}"
+	password: "{{ secrets['password'] }}"
+endsnippet
+
+snippet icmd "Ansible IOS Command"
+- name: $1
+  ios_command:
+    provider: "{{ provider }}"
+    commands: $2
+  register: $3
+  tags:
+    - $4
+endsnippet
+
+snippet la "Ansible Local Action"
+- name: $1
+  local_action: $2
+  $0
+endsnippet
+
