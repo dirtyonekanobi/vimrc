@@ -36,6 +36,9 @@ Plugin 'scrooloose/syntastic'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'townk/vim-autoclose'
+Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'junegunn/fzf'
+Plugin 'hashivim/vim-terraform'
 
 " Ansible Stuff
 Plugin 'pearofducks/ansible-vim'
@@ -50,6 +53,11 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround.git'
 Plugin 'tpope/vim-vividchalk'
 
+" java/coffeescript
+Plugin 'kchmck/vim-coffee-script'
+
+" Golang Stuff
+Plugin 'fatih/vim-go'
 
 " IDE Features - May be slow
 "if g:distro != 'Debian' || 'CentOs'
@@ -72,7 +80,7 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'sjl/badwolf'
 Plugin 'tomasr/molokai'
 Plugin 'dirtyonekanobi/cisco.vim'
-
+Plugin 'nathanaelkane/vim-indent-guides'
 
 " Plugins to Lookup or Install Later
 " Plugin 'SirVer/ultisnips'
