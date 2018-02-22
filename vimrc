@@ -53,8 +53,6 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround.git'
 Plugin 'tpope/vim-vividchalk'
 
-" java/coffeescript
-Plugin 'kchmck/vim-coffee-script'
 
 " Golang Stuff
 Plugin 'fatih/vim-go'
@@ -110,13 +108,6 @@ colorscheme lucario 	"Previously lucario
 
 set ruler
 
-" OSX Stuff
-if system('uname -s') == "Darwin\n"
-set guifont=Inconsolata\ for\ Powerline:h15
-set laststatus=2
-set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v]%{fugitive#statusline()}
-endif
-
 " Universal Stuff
 set encoding=utf-8
 set t_Co=256
@@ -142,18 +133,19 @@ nnoremap <leader>s :mksession<CR>
 
 
 "------------- Python Specific -----------------"
-
+" Must Fix
 " VirtualEnv Sanity
-py << EOF
-import os.path
-import sys
-import vim
-if 'VIRTUA_ENV' in os.environ:
-  project_base_dir = os.environ['VIRTUAL_ENV']
-  sys.path.insert(0, project_base_dir)
-  activate_this = os.path.join(project_base_dir,'bin/activate_this.py')
-  execfile(activate_this, dict(__file__=activate_this))
-EOF
+" py << EOF
+" import os.path
+" import sys
+" import vim
+" if 'VIRTUA_ENV' in os.environ:
+"   project_base_dir = os.environ['VIRTUAL_ENV']
+"   sys.path.insert(0, project_base_dir)
+"   activate_this = os.path.join(project_base_dir,'bin/activate_this.py')
+"   execfile(activate_this, dict(__file__=activate_this))
+"endif
+"EOF
 
 
 "------------Start Python PEP 8 stuff----------------"
@@ -164,7 +156,7 @@ au BufRead,BufNewFile *py,*pyw,*.c,*.h set tabstop=4
 au BufRead,BufNewFile *.py,*pyw set shiftwidth=4
 au BufRead,BufNewFile *.py,*.pyw set expandtab
 au BufRead,BufNewFile *.py set softtabstop=4
-au BufRead,BufNewFile *.py set textwidth=100
+au BufRead,BufNewFile *.py set textwidth=120
 au BufRead,BufNewFile *.py set autoindent
 au BufRead,BufNewFile *.py set fileformat=unix
 set foldlevelstart=99
@@ -206,7 +198,6 @@ imap <silent> <F8> <Plug>MarkdownPreview        " for insert mode
 nmap <silent> <F9> <Plug>StopMarkdownPreview    " for normal mode
 imap <silent> <F9> <Plug>StopMarkdownPreview    " for insert mode
 
-let g:mkdp_path_to_chrome = "open -a Google\\ Chrome"
 
 " Ultisnips Specific
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -229,4 +220,3 @@ nnoremap <leader>e :Explore<cr>
 nnoremap <leader>v :Vexplore<cr>
 nnoremap <leader>h :Sexplore<cr>
 
-autocmd FileType yaml setlocal autoindent ts=2 sts=2 sw=2 expandtab
