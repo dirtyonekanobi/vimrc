@@ -27,41 +27,41 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'mileszs/ack.vim'
-Plugin 'ekalinin/Dockerfile.vim'
-Plugin 'elzr/vim-json'
-Plugin 'scrooloose/syntastic'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'townk/vim-autoclose'
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'junegunn/fzf'
-Plugin 'hashivim/vim-terraform'
+Plug 'scrooloose/nerdcommenter'
+Plug 'mileszs/ack.vim'
+Plug 'ekalinin/Dockerfile.vim'
+Plug 'elzr/vim-json'
+Plug 'scrooloose/syntastic'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'townk/vim-autoclose'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'junegunn/fzf'
+Plug 'hashivim/vim-terraform'
 
 " Ansible Stuff
-Plugin 'pearofducks/ansible-vim'
+Plug 'pearofducks/ansible-vim'
 
 " Python Plugins
-Plugin 'nvie/vim-flake8'
-Plugin 'vim-scripts/Pydiction'
-Plugin 'vim-scripts/indentpython.vim'
+Plug 'nvie/vim-flake8'
+Plug 'vim-scripts/Pydiction'
+Plug 'vim-scripts/indentpython.vim'
 
 " tpope stuff -- awesomness
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround.git'
-Plugin 'tpope/vim-vividchalk'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround.git'
+Plug 'tpope/vim-vividchalk'
 
 
 " Golang Stuff
-"Plugin 'fatih/vim-go'
+"Plug 'fatih/vim-go'
 
 " Colors and Visuals
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'sjl/badwolf'
-Plugin 'tomasr/molokai'
-Plugin 'dirtyonekanobi/cisco.vim'
-Plugin 'nathanaelkane/vim-indent-guides'
+Plug 'altercation/vim-colors-solarized'
+Plug 'sjl/badwolf'
+Plug 'tomasr/molokai'
+Plug 'dirtyonekanobi/cisco.vim'
+Plug 'nathanaelkane/vim-indent-guides'
 
 set hidden
 
