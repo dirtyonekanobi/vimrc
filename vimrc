@@ -69,7 +69,7 @@ set noswapfile
 
 " ColorScheme Changes
 set background=dark
-!silent colorscheme solarized 	"Previously lucario
+silent! colorscheme solarized
 
 set ruler
 
