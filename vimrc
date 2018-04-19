@@ -18,16 +18,15 @@ elseif filereadable("/etc/redhat-release")
 	let g:distro="CentOs"
 endif
 
+" switching to vim-plug
+" must have Curl installed
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'mileszs/ack.vim'
 Plugin 'ekalinin/Dockerfile.vim'
@@ -55,23 +54,7 @@ Plugin 'tpope/vim-vividchalk'
 
 
 " Golang Stuff
-Plugin 'fatih/vim-go'
-
-" IDE Features - May be slow
-"if g:distro != 'Debian' || 'CentOs'
-"	Plugin 'Valloric/YouCompleteMe'
-" endif
-
-" Writing
-if g:distro != 'Debian' || 'CentOs'
-	Plugin 'godlygeek/tabular'
-    Bundle 'gabrielelana/vim-markdown'
-	Plugin 'iamcco/markdown-preview.vim'
-	Plugin 'junegunn/goyo.vim'
-	Plugin 'bwmcadams/vim-deckset'
-    Plugin 'xolox/vim-notes'
-    Plugin 'xolox/vim-misc'
-endif
+"Plugin 'fatih/vim-go'
 
 " Colors and Visuals
 Plugin 'altercation/vim-colors-solarized'
@@ -80,16 +63,6 @@ Plugin 'tomasr/molokai'
 Plugin 'dirtyonekanobi/cisco.vim'
 Plugin 'nathanaelkane/vim-indent-guides'
 
-" Plugins to Lookup or Install Later
-" Plugin 'SirVer/ultisnips'
-" Plugin 'honza/vim-snippets'
-" Plugin 'scrooloose/syntastic'
-" Plugin 'gregsexton/MatchTag'
-
-
-call vundle#end()            " required
-filetype plugin indent on    " required
-
 set hidden
 
 set backspace=2		" Make Backspace NORMAL
@@ -97,14 +70,10 @@ syntax enable		" Highlight Some Syntax
 let mapleader="\<Space>"    " leader is SPACE
 set noswapfile
 
-if exists(":YcmCompleter")
-	let g:ycm_autoclose_preview_window_after_completion=1
-	map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
-endif
-
 
 " ColorScheme Changes
-colorscheme lucario 	"Previously lucario
+set background=dark
+colorscheme solarized 	"Previously lucario
 
 set ruler
 
@@ -180,24 +149,11 @@ nnoremap <leader>F zM
 
 "------------- End Python Specific ---------------"
 
-
-" Use SilverSearcher or Ack
-if executable('ag')
-	let g:ackprg = 'ag --vimgrep'
-endif
-
-let g:notes_directories = [ '~/notes', '~/Documents/Notes' ]
-
 set relativenumber
 set clipboard=unnamed
 
 " --------- Markdown Specific ---------"
 "
-nmap <silent> <F8> <Plug>MarkdownPreview        " for normal mode
-imap <silent> <F8> <Plug>MarkdownPreview        " for insert mode
-nmap <silent> <F9> <Plug>StopMarkdownPreview    " for normal mode
-imap <silent> <F9> <Plug>StopMarkdownPreview    " for insert mode
-
 
 " Ultisnips Specific
 let g:UltiSnipsExpandTrigger="<tab>"
