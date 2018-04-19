@@ -18,15 +18,9 @@ elseif filereadable("/etc/redhat-release")
 	let g:distro="CentOs"
 endif
 
-" switching to vim-plug
-" must have Curl installed
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
+" switching to vim-Plug
 
-
+call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdcommenter'
 Plug 'mileszs/ack.vim'
 Plug 'ekalinin/Dockerfile.vim'
@@ -62,6 +56,8 @@ Plug 'sjl/badwolf'
 Plug 'tomasr/molokai'
 Plug 'dirtyonekanobi/cisco.vim'
 Plug 'nathanaelkane/vim-indent-guides'
+
+call plug#end()
 
 set hidden
 
